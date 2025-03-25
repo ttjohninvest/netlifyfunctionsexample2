@@ -2,8 +2,9 @@ import { connectToDatabase } from "/lib/connect-to-db";
 import { Product } from "/models/church";
 
 exports.handler=async function(event,context) {
-  console.log("in the netlify function")
-  try {
+console.log("in the netlify function")
+
+try {
     console.log("before database connection call");
     await connectToDatabase();
     console.log("after database connection call");
@@ -21,15 +22,14 @@ exports.handler=async function(event,context) {
       statusCode: 200,
       body:JSON.stringify(products),
     };
+
   } catch (error) {
     console.log("error=" + error);
     return {
       statusCode: 200,
       body:JSON.stringify({error:"Unable to get the mongodb data"}),
     };
-  }
-
- 
+  } 
 };
 
 
